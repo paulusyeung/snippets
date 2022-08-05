@@ -1,1 +1,17 @@
-
+version: '3.7'
+services:
+  db:
+    container_name: pg8sql
+    image: postgres:8.4.22
+    restart: always
+    environment:
+      - POSTGRES_USER=MyUserName
+      - POSTGRES_PASSWORD=MyPassword
+    ports:
+      - '5434:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local
+    name: pg8db

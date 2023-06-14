@@ -7,17 +7,17 @@ services:
     container_name: iredmail
     restart: unless-stopped
     volumes:
-      - ./backup-mysql:/var/vmail/backup/mysql
-      - ./mailboxes:/var/vmail/vmail1
-      - ./mlmmj:/var/vmail/mlmmj
-      - ./mlmmj-archive:/var/vmail/mlmmj-archive
-      - ./imapsieve_copy:/var/vmail/imapsieve_copy
-      - ./custom:/opt/iredmail/custom
-      - ./ssl:/opt/iredmail/ssl
-      - ./mysql:/var/lib/mysql
-      - ./clamav:/var/lib/clamav
-      - ./sa_rules:/var/lib/spamassassin
-      - ./postfix_queue:/var/spool/postfix
+      - backup_mysql:/var/vmail/backup/mysql
+      - clamav:/var/lib/clamav
+      - custom:/opt/iredmail/custom
+      - imapsieve_copy:/var/vmail/imapsieve_copy
+      - mailboxes:/var/vmail/vmail1
+      - mlmmj:/var/vmail/mlmmj
+      - mlmmj_archive:/var/vmail/mlmmj-archive
+      - mysql:/var/lib/mysql
+      - postfix_queue:/var/spool/postfix
+      - sa_rules:/var/lib/spamassassin
+      - ssl:/opt/iredmail/ssl
     ports:
       - '127.0.0.1:3000:80'
       - '127.0.0.1:3001:443'
@@ -34,3 +34,16 @@ services:
       - FIRST_MAIL_DOMAIN_ADMIN_PASSWORD=xxxxxxxxxxxxx
       - MLMMJADMIN_API_TOKEN=xxxxxxxxxxxxxx
       - ROUNDCUBE_DES_KEY=xxxxxxxxxxxxxxx
+
+volumes:
+  backup_mysql:    # Backup MySQL copies
+  clamav:          # ClamAV databases
+  custom:          # Custom config files
+  imapsieve_copy:  # Used by Dovecot plugin 'imapsieve'
+  mailboxes:       # All users' mailboxes
+  mlmmj:           # Mailing list data
+  mlmmj_archive:   # Mailing list archive
+  mysql:           # MySQL database
+  postfix_queue:   # Postfix queues
+  sa_rules:        # SpamAssassin rules
+  ssl:             # SSL cert/key files

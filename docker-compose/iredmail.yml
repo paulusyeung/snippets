@@ -1,5 +1,6 @@
 version: '3.7'
 
+# refer: https://hub.docker.com/r/iredmail/mariadb
 services:
   iredmail:
     image: iredmail/mariadb:stable

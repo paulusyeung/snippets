@@ -3,7 +3,7 @@ version: '3.7'
 # refer: https://hub.docker.com/r/iredmail/mariadb
 services:
   iredmail:
-    image: iredmail/mariadb:stable
+    image: iredmail/mariadb:nightly
     hostname: mail.stsecurity.moe
     container_name: iredmail
     restart: unless-stopped
@@ -29,13 +29,16 @@ services:
       - '25:25'
       - '465:465'
       - '587:587'
+      - '3306:3306'
     environment:
       - HOSTNAME=mail.stsecurity.moe
       - FIRST_MAIL_DOMAIN=stsecurity.moe
       - FIRST_MAIL_DOMAIN_ADMIN_PASSWORD=xxxxxxxxxxxxx
-      - MLMMJADMIN_API_TOKEN=xxxxxxxxxxxxxx
-      - ROUNDCUBE_DES_KEY=xxxxxxxxxxxxxxx
-
+      - MLMMJADMIN_API_TOKEN=xxxxxxxxxxxxx
+      - ROUNDCUBE_DES_KEY=xxxxxxxxxxxxx
+      - ROUNDCUBE_DES_KEY=xxxxxxxxxxxxx
+      - MYSQL_USE_RANDOM_PASSWORDS=NO
+      - MYSQL_ROOT_PASSWORD=xxxxxxxxxxxxx
 volumes:
   backup_mysql:    # Backup MySQL copies
   clamav:          # ClamAV databases

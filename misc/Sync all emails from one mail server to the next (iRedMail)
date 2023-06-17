@@ -1,0 +1,36 @@
+#!/bin/bash
+
+set -e
+
+function syncAccount() {
+  # Important: need trailing slash
+  FROM=$1
+  TO=$2
+  [[ $FROM =~ /$ ]] || (echo "Missing trailing slash!" && exit 1)
+  [[ $TO =~ /$ ]] || (echo "Missing trailing slash!" && exit 1)
+  echo -e "\033[1;33m ==> Syncing $FROM\033[0;m"
+  # NOTE: Use the --delete switch for the first syncs, during dns propagation, do not use --delete anymore
+# --delete \
+  rsync -Pr \
+   --update \
+   --owner --group --chown=vmail:vmail \
+   $FROM $TO
+}
+
+echo -e "\033[1;33m ==> Syncing from old mail server\033[0;m"
+
+# NOTE: I prefer to leave the $FROM argument rather explicit here since it's pretty clear which way the data is flowing
+syncAccount \
+  root@old_mail:/var/vmail/vmail1/mydomain.com/username1/ \
+  /var/vmail/vmail1/mydomain.com/username1/
+
+syncAccount \
+  root@old_mail:/var/vmail/vmail1/mydomain.com/username2/ \
+  /var/vmail/vmail1/mydomain.com/username2/
+
+cd /tmp # Bypass perm error on cd into /root when using "su postgres"
+
+# Reset (webmail) quotas per: http://www.iredmail.org/forum/topic5135-iredmail-support-update-quota.html
+su postgres -c "psql vmail -c 'DELETE FROM used_quota;'"
+
+echo -e "\033[1;32m ==> All done.\033[0;m"

@@ -20,8 +20,8 @@ services:
       - sa_rules:/var/lib/spamassassin
       - ssl:/opt/iredmail/ssl
     ports:
-      - '127.0.0.1:3000:80'
-      - '127.0.0.1:3001:443'
+      - '80:80'
+      - '443:443'
       - '110:110'
       - '995:995'
       - '143:143'

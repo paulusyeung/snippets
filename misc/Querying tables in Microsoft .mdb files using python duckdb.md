@@ -28,4 +28,4 @@ mssql+pyodbc is for Microsoft SQL Server. You need to install [sqlalchemy-access
 
 ## [mdbread](https://github.com/gilesc/mdbread)
 
-## [MDBparser](https://pypi.org/project/mdb-parser/)
+## [MDBParser](https://pypi.org/project/mdb-parser/)

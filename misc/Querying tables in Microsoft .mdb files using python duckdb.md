@@ -1,4 +1,4 @@
-## [Original Source](https://github.com/duckdb/duckdb/discussions/13141)
+## [Original Source](https://github.com/duckdb/duckdb/discussions/13141){:target="_blank"}
 
 connect to .mdb with pyodbc (in the past) or sqlalchemy (now), then query my data with something like this:
 
@@ -23,9 +23,9 @@ sql = "SELECT * FROM table3;"
 df3 = pandas.read_sql(sql,conn)
 ```
 
-mssql+pyodbc is for Microsoft SQL Server. You need to install [sqlalchemy-access](https://pypi.org/project/sqlalchemy-access/) and use access+pyodbc.
+mssql+pyodbc is for Microsoft SQL Server. You need to install [sqlalchemy-access](https://pypi.org/project/sqlalchemy-access/){:target="_blank"} and use access+pyodbc.
 
 
-## [mdbread](https://github.com/gilesc/mdbread)
+## [mdbread](https://github.com/gilesc/mdbread){:target="_blank"}
 
-## [MDBParser](https://pypi.org/project/mdb-parser/)
+## [MDBParser](https://pypi.org/project/mdb-parser/){:target="_blank"}

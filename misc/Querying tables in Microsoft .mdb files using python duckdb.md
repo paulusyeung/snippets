@@ -1,5 +1,4 @@
-
-https://github.com/duckdb/duckdb/discussions/13141
+[Original Source](https://github.com/duckdb/duckdb/discussions/13141)
 
 connect to .mdb with pyodbc (in the past) or sqlalchemy (now), then query my data with something like this:
 

@@ -24,4 +24,4 @@ sql = "SELECT * FROM table3;"
 df3 = pandas.read_sql(sql,conn)
 ```
 
-mssql+pyodbc is for Microsoft SQL Server. You need to install (sqlalchemy-access[https://pypi.org/project/sqlalchemy-access/]) and use access+pyodbc.
+mssql+pyodbc is for Microsoft SQL Server. You need to install [sqlalchemy-access](https://pypi.org/project/sqlalchemy-access/) and use access+pyodbc.

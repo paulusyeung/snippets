@@ -1,0 +1,24 @@
+https://github.com/duckdb/duckdb/discussions/13141
+
+connect to .mdb with pyodbc (in the past) or sqlalchemy (now), then query my data with something like this:
+
+```
+driver = "{Microsoft Access Driver (*.mdb, *.accdb)}"
+accessFilePath = "C:\\path\\to\\myAccessDBfile.mdb" 
+connstring=(r'DRIVER={{driver}}; DBQ={{accessFilePath}};')
+connstring = connstring.replace("{{driver}}",driver)
+connstring = connstring.replace("{{accessFilePath}}",accessFilePath)
+
+from sqlalchemy.engine import URL
+connection_url = URL.create("access+pyodbc", query={"odbc_connect": connstring})
+
+from sqlalchemy import create_engine
+conn = create_engine(connection_url)
+
+import pandas
+df1 = pandas.read_csv(...)
+df2 = pandas.read_excel(...)
+
+sql = "SELECT * FROM table3;"
+df3 = pandas.read_sql(sql,conn)
+```
